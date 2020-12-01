@@ -1,79 +1,64 @@
-import React, { Component } from 'react';
+import React from "react";
 import {
   Grid,
   TextField,
-  Checkbox,
-  FormGroup,
-  FormControlLabel
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+  Card,
+  CardContent,
+  Button,
+  Typography,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({}));
 
-}));
+const NewPunchlistForm = ({
+  handleAddressChange,
+  handleDepositChange,
+  handleSubmit,
+}) => {
+  const classes = useStyles();
 
-export default function NewPunchlistForm() {
-    const classes = useStyles();
-    const [checked, setChecked] = React.useState(false);
-
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
-    return(
-        <form noValidate autoComplete="off">
-            <Grid container direction="column" spacing={2}>
-                <Grid item>
-                    <Grid container direction="row" spacing={3}>
-                        <Grid item xs={6}>
-                            <TextField fullWidth id="property_address" label="Address" variant="outlined" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField fullWidth id="property_deposit" label="Deposit Amount" variant="outlined" />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid container direction="row" spacing={3}>
-                        <Grid item xs={6}>
-                            <TextField fullWidth id="punchlist_item" label="Punchlist Item" variant="outlined" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField fullWidth id="punchlist_item_location" label="Item Location" variant="outlined" />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid container direction="row" spacing={3}>
-                        <Grid item xs={6}>
-                            <TextField fullWidth id="punchlist_item_labor" label="Labor Hours" variant="outlined" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField fullWidth id="punchlist_item_material_cost" label="Material Cost" variant="outlined" />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item>
-                    <Grid container direction="row" spacing={3}>
-                        <Grid item xs={6}>
-                            <FormGroup row>
-                                <FormControlLabel
-                                control={
-                                    <Checkbox
-                                    checked={checked}
-                                    onChange={handleChange}
-                                    inputProps={{ 'aria-label': 'primary checkbox' }}
-                                    />
-                                }
-                                label="Owner Responsibility"
-                                />
-                            </FormGroup>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField fullWidth multiline id="punchlist_item_notes" label="Notes" variant="outlined" />
-                        </Grid>
-                    </Grid>
-                </Grid>
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h4">Create New Punchlist</Typography>
+        <br />
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+            spacing={2}
+          >
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                id="property_address"
+                label="Address"
+                variant="outlined"
+                onChange={handleAddressChange}
+              />
             </Grid>
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                id="property_deposit"
+                label="Deposit Amount"
+                variant="outlined"
+                onChange={handleDepositChange}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Button fullWidth type="submit">
+                Create
+              </Button>
+            </Grid>
+          </Grid>
         </form>
-    )
-}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default NewPunchlistForm;
